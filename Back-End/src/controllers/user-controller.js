@@ -1,12 +1,10 @@
 const express = require('express');
-const server = express();
-
-server.use(express.json());
+const router = express.Router();
 
 const usuarios = [];
 
 // Cadastrar
-server.post('/usuarios', (req, res) => {
+router.post('/', (req, res) => {
     const { nome, nicho } = req.body;
     const newUsuario = {nome, nicho};
     usuarios.push(newUsuario);
@@ -14,13 +12,13 @@ server.post('/usuarios', (req, res) => {
 });
 
 // Ler um usuário
-server.get('/usuarios/:index', (req, res) => {
+router.get('/:index', (req, res) => {
     const { index } = req.params;
     return res.json(usuarios[index]);
 });
 
 // Atualizar
-server.put('/usuarios/:index', (req, res) => {
+router.put('/:index', (req, res) => {
     const { index } = req.params;
     const { nome, nicho } = req.body;
     const updatedUsuario = { nome, nicho };
@@ -30,7 +28,7 @@ server.put('/usuarios/:index', (req, res) => {
 });
 
 // Deletar
-server.delete('/usuarios/:index', (req, res) => {
+router.delete('/:index', (req, res) => {
     const { index } = req.params;
 
     usuarios.splice(index, 1);
@@ -40,7 +38,7 @@ server.delete('/usuarios/:index', (req, res) => {
 
 // Ler todos os usuários
 // Precisa ler só algumas informações como seu nome e nicho 
-server.get('/usuarios', (req, res) => {
+router.get('/', (req, res) => {
     const usuarioResumido = usuarios.map(usuario => ({
         nome: usuario.nome,
         nicho: usuario.nicho
@@ -51,11 +49,11 @@ server.get('/usuarios', (req, res) => {
 
 // Identificar pelo nicho
 
-server.get('/usuarios/nicho/:nicho', (req, res) => {
+router.get('/nicho/:nicho', (req, res) => {
     const { nicho } = req.params;
     const usuariosFiltrados = usuarios.filter(usuario => usuario.nicho === nicho);
 
     return res.json(usuariosFiltrados);
 });
 
-server.listen(3000);
+module.exports = router;

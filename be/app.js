@@ -7,7 +7,10 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-app.use('/usuarios', userRoutes);
+app.use('/users', userRoutes);
+app.get('/', () => {
+    res.send("Welcome to Evolux BE")
+})
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

@@ -2,7 +2,7 @@
   "builds": [
     {
       "src": "be/app.js",
-      "use": "@vercel/node"
+      "use": "be/@vercel/node"
     }
   ],
   "routes": [

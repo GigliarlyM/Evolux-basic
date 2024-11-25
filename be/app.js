@@ -7,6 +7,12 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use('/users', userRoutes);
 app.get('/', () => {
     res.send("Welcome to Evolux BE")

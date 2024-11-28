@@ -5,8 +5,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>App test</Text>
-      <Link href="/profile">Go to profile</Link>
-      
+      <Link style={styles.btn_change_page} href="/main">Go to Viabilidade</Link>
+
     </View>
   );
 };
@@ -15,9 +15,21 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
     alignItems: 'center',
     justifyContent: 'center',
     color: 'white'
+  },
+  btn_change_page: {
+    backgroundColor: '#4CAF50',
+    color: 'white',
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10,
+    textTransform: 'uppercase',
+    fontSize: 18,
+    fontWeight: 'bold',
+    width: '80%',
+    marginLeft: 'auto',
+    marginRight: 'auto'
   }
 });

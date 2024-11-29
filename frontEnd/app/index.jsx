@@ -4,9 +4,8 @@ import { Link } from 'expo-router';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>App test</Text>
-      <Link style={styles.btn_change_page} href="/main">Go to Viabilidade</Link>
-
+      {/*<Link style={styles.btn_change_page} href="/main">Go to Viabilidade</Link>*/}
+      <Link style={styles.btn_change_page} href="/getDataUser">Inserir meus dados</Link>
     </View>
   );
 };

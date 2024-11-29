@@ -8,11 +8,6 @@ const Layout = () => {
       <Stack.Screen name='index' options={{
         headerShown: false
         }} />
-
-      <Stack.Screen name='main' options={{
-        headerShown: true,
-        headerTitle: "Viabilidade"
-        }} />
     </Stack>
   )
 }

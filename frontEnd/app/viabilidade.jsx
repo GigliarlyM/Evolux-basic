@@ -13,7 +13,7 @@ export default function Viabilidade() {
         <Text style={styles.textContent}>Seu Nicho apresenta taxa de xx% de lucro apos investir em marketing.</Text>
       </View>
 
-      <Link style={styles.btnRefazer} href="/">Refazer Captacao</Link>
+      <Link style={styles.btnRefazer} href="/getDataUser">Refazer Captacao</Link>
     </View>
   )
 }

@@ -7,18 +7,15 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', userRoutes);
-app.get('/', () => {
-    res.send("Welcome to Evolux BE")
+app.get('/', (req, res) => {
+    res.send("Welcome to the Evolux")
 })
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`)
+    console.log(`Servidor rodando na porta http://localhost:${PORT}`)
 });

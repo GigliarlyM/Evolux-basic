@@ -8,7 +8,7 @@
     "vercel-build": "prisma generate && npx prisma migrate deploy"
   },
   "keywords": [],
-  "author": "Evolux",
+  "author": "Team Evolux",
   "license": "ISC",
   "description": "",
   "dependencies": {

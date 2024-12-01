@@ -1,16 +1,14 @@
 const express = require("express");
-const dotenv = require('dotenv');
 const userRoutes = require('./src/routes/user-routes');
-require('./src/config/database');
+// require('./src/config/database');
+require('dotenv').config();
 
-dotenv.config();
 const app = express();
-app.use(express.json());
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/users', userRoutes);
+
 app.get('/', (req, res) => {
     res.send("Welcome to the Evolux")
 })

@@ -17,46 +17,36 @@ const Form = () => {
   };
 
   const handleSubmit = async () => {
-    // verificar campos
     const { segmento, produto, desafios, tempoDeVida } = formData;
-
+  
+   
     if (!segmento || !produto || !desafios || !tempoDeVida) {
       Alert.alert("Erro", "Todos os campos são obrigatórios!");
       return;
     }
-
+  
     try {
-        navigation.navigate("viabilidade");
-      } catch (error) {
-        console.error(error);
-        Alert.alert("Erro", "Ocorreu um erro inesperado.");
+    
+      const response = await fetch("http://192.168.15.1:3000", {
+        method: "POST", // Método POST
+        headers: {
+          "Content-Type": "application/json", // Definindo o tipo de conteúdo
+        },
+        body: JSON.stringify(formData), // Corpo da requisição com os dados do formulário
+      });
+  
+      // Verificar se a resposta foi bem-sucedida
+      if (response.ok) {
+        Alert.alert("Sucesso", "Informações enviadas com sucesso!");
+        navigation.navigate("Viabilidade"); // Navegar para a próxima tela
+      } else {
+        Alert.alert("Erro", "Não foi possível enviar os dados. Tente novamente.");
       }
-    };
-
-
-//     try {
-//       // enviar os dados para o backend
-//       const response = await fetch("", {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify(formData),
-//       });
-
-//       if (response.ok) {
-//         Alert.alert("Sucesso", "Informações enviadas com sucesso!");
-//         // proxima pagina com os dados gerados
-//         navigation.navigate("Viabilidade"); 
-//       } else {
-        
-//         Alert.alert("Erro", "Não foi possível enviar os dados. Tente novamente.");
-//       }
-//     } catch (error) {
-//       console.error(error);
-//       Alert.alert("Erro", "Ocorreu um erro ao enviar as informações.");
-//     }
-//   };
+    } catch (error) {
+      console.error(error);
+      Alert.alert("Erro", "Ocorreu um erro ao enviar as informações.");
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -160,3 +150,5 @@ const styles = StyleSheet.create({
 });
 
 export default Form;
+
+

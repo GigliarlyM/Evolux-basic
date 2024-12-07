@@ -1,5 +1,6 @@
 const express = require("express");
 const userRoutes = require('./src/routes/user-routes');
+const iaRoutes = require('./src/routes/ia-routes');
 // require('./src/config/database');
 require('dotenv').config();
 
@@ -8,6 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/users', userRoutes);
+app.use('/ia', iaRoutes)
 
 app.get('/', (req, res) => {
     res.send("Welcome to the Evolux")

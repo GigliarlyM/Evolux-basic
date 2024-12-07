@@ -1,20 +1,58 @@
-import { Button, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { Link } from 'expo-router'
+import { Link } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import { Alert, StyleSheet, Text, View, ScrollView } from 'react-native';
+import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function Viabilidade() {
+  const [responsePrompt, setResponsePrompt] = useState("");
+
+  useEffect(() => {
+    const getDataResponse = async () => {
+      try {
+        const response = await fetch("http://192.168.15.10:3000/ia", {
+          method: "POST", // Método POST
+          headers: {
+            "Content-Type": "application/json", // Definindo o tipo de conteúdo
+          },
+          body: JSON.stringify(), // Corpo da requisição com os dados do formulário
+        });
+
+
+        if (response.ok) {
+          const json = await response.json();
+          console.log(json);
+          setResponsePrompt(json.responsePrompt);
+
+          Alert.alert("Sucesso", "Informações enviadas com sucesso!");
+
+        } else {
+          Alert.alert("Erro", "Não foi possível enviar os dados. Tente novamente.");
+        }
+      } catch (error) {
+        console.error(error);
+        Alert.alert("Erro", "Ocorreu um erro ao enviar as informações.");
+      }
+    }
+    getDataResponse();
+
+  }, [])
+
   return (
-    <View>
-      <View style={styles.contentV}>
-        <Text style={styles.titleContent}>Seu Negocio</Text>
+    <SafeAreaProvider>
+      <SafeAreaView>
+        <ScrollView>
+          <View>
+            <View style={styles.contentV}>
+              <Text style={styles.titleContent}>Seu Negocio</Text>
 
-        <Text style={styles.textContent}>Tem potencial de obter ROI de 2,6. Com produto principal tendo valor de 120, e meta de 64 clientes por ano.</Text>
+              <Text style={styles.textContent}> {responsePrompt} </Text>
+            </View>
 
-        <Text style={styles.textContent}>Seu Nicho apresenta taxa de xx% de lucro apos investir em marketing.</Text>
-      </View>
-
-      <Link style={styles.btnRefazer} href="/getDataUser">Refazer Captacao</Link>
-    </View>
+            <Link style={styles.btnRefazer} href="/getDataUser">Refazer Captacao</Link>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </SafeAreaProvider>
   )
 }
 

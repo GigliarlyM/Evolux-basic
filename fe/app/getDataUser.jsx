@@ -18,34 +18,14 @@ const Form = () => {
 
   const handleSubmit = async () => {
     const { segmento, produto, desafios, tempoDeVida } = formData;
-  
-   
+
+
     if (!segmento || !produto || !desafios || !tempoDeVida) {
       Alert.alert("Erro", "Todos os campos são obrigatórios!");
       return;
     }
-  
-    try {
     
-      const response = await fetch("http://192.168.15.1:3000", {
-        method: "POST", // Método POST
-        headers: {
-          "Content-Type": "application/json", // Definindo o tipo de conteúdo
-        },
-        body: JSON.stringify(formData), // Corpo da requisição com os dados do formulário
-      });
-  
-      // Verificar se a resposta foi bem-sucedida
-      if (response.ok) {
-        Alert.alert("Sucesso", "Informações enviadas com sucesso!");
-        navigation.navigate("Viabilidade"); // Navegar para a próxima tela
-      } else {
-        Alert.alert("Erro", "Não foi possível enviar os dados. Tente novamente.");
-      }
-    } catch (error) {
-      console.error(error);
-      Alert.alert("Erro", "Ocorreu um erro ao enviar as informações.");
-    }
+    navigation.navigate("viabilidade"); // Navegar para a próxima tela
   };
 
   return (

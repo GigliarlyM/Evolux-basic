@@ -1,0 +1,13 @@
+{
+  "name": "evolux-basic",
+  "version": "1.0.0",
+  "main": "be/app.js",
+  "scripts": {
+    "start": "cd be && npm run start",
+    "vercel-build": "cd be && npm run vercel-build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

@@ -3,6 +3,6 @@ const router = express.Router();
 const iaController = require('../controllers/gemini-controller');
 
 router.route('/')
-.get(iaController.searchQuestion)
+.post(iaController.searchQuestion)
 
 module.exports = router;

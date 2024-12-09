@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+  ActivityIndicator,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 const Form = () => {
@@ -10,6 +18,7 @@ const Form = () => {
     tempoDeVida: "",
   });
 
+  const [isLoading, setIsLoading] = useState(false); // Estado para o Activity Indicator
   const navigation = useNavigation();
 
   const handleChange = (field, value) => {
@@ -19,13 +28,23 @@ const Form = () => {
   const handleSubmit = async () => {
     const { segmento, produto, desafios, tempoDeVida } = formData;
 
-
     if (!segmento || !produto || !desafios || !tempoDeVida) {
       Alert.alert("Erro", "Todos os campos são obrigatórios!");
       return;
     }
-    
-    navigation.navigate("viabilidade"); // Navegar para a próxima tela
+
+    setIsLoading(true); 
+
+    try {
+      
+      setTimeout(() => {
+        setIsLoading(false); 
+        navigation.navigate("viabilidade"); 
+      }, 8000); 
+    } catch (error) {
+      setIsLoading(false);
+      Alert.alert("Erro", "Ocorreu um erro. Tente novamente.");
+    }
   };
 
   return (
@@ -74,9 +93,13 @@ const Form = () => {
       </View>
 
       {/* Botão */}
-      <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-        <Text style={styles.buttonText}>Enviar informações</Text>
-      </TouchableOpacity>
+      {isLoading ? (
+        <ActivityIndicator size="large" color="#6200ee" style={{ marginTop: 20 }} />
+      ) : (
+        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+          <Text style={styles.buttonText}>Enviar informações</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
@@ -130,5 +153,3 @@ const styles = StyleSheet.create({
 });
 
 export default Form;
-
-

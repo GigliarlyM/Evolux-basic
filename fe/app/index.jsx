@@ -9,11 +9,11 @@ export default function App() {
     <View style={styles.container}>
       {/* logo */}
       <Image
-        source={{ uri: 'https://via.placeholder.com/100x100.png?text=LOGO' }} // Substitua pelo seu logo
+         // Substitua pelo seu logo
+        source={require('../assets/images/logo.png')}
         style={styles.logo}
       />
-      <Text style={styles.logoText}>EVOLUX</Text>
-
+      
       <Text style={styles.title}>Entrar</Text>
 
       <View style={styles.inputContainer}>
@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
   },
   logo: {
-    width: 100,
-    height: 100,
+    width: 300,
+    height: 300,
     marginBottom: 10,
   },
   logoText: {

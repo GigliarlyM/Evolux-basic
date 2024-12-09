@@ -9,7 +9,7 @@ export default function Viabilidade() {
   useEffect(() => {
     const getDataResponse = async () => {
       try {
-        const response = await fetch("http://192.168.15.10:3000/ia", {
+        const response = await fetch("http://10.5.0.211:3000/ia", {
           method: "POST", // Método POST
           headers: {
             "Content-Type": "application/json", // Definindo o tipo de conteúdo
@@ -20,11 +20,10 @@ export default function Viabilidade() {
 
         if (response.ok) {
           const json = await response.json();
-          console.log(json);
+          //console.log(json);
           setResponsePrompt(json.responsePrompt);
 
-          Alert.alert("Sucesso", "Informações enviadas com sucesso!");
-
+          //Alert.alert("Sucesso", "Informações enviadas com sucesso!");
         } else {
           Alert.alert("Erro", "Não foi possível enviar os dados. Tente novamente.");
         }

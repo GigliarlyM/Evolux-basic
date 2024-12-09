@@ -40,7 +40,7 @@ const Form = () => {
       setTimeout(() => {
         setIsLoading(false); 
         navigation.navigate("viabilidade"); 
-      }, 8000); 
+      }, 10000); 
     } catch (error) {
       setIsLoading(false);
       Alert.alert("Erro", "Ocorreu um erro. Tente novamente.");
